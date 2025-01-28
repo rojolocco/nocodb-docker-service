@@ -1,19 +1,19 @@
 services:
-  db_nocodb:
-    image: postgres:17-alpine
-    container_name: db_nocodb
-    env_file:
-      - .env
-    restart: always
-    volumes: 
-      - "db_data:/var/lib/postgresql/data"
-    networks:
-      - caddy_network
-    healthcheck: 
-      interval: 10s
-      retries: 10
-      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
-      timeout: 2s
+  # db_nocodb:
+  #   image: postgres:17-alpine
+  #   container_name: db_nocodb
+  #   env_file:
+  #     - .env
+  #   restart: always
+  #   volumes: 
+  #     - "db_data:/var/lib/postgresql/data"
+  #   networks:
+  #     - caddy_network
+  #   healthcheck: 
+  #     interval: 10s
+  #     retries: 10
+  #     test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+  #     timeout: 2s
   
   nocodb:
     image: nocodb/nocodb:latest
@@ -32,13 +32,13 @@ services:
         limits:
           memory: 512M  # Límite de memoria
           cpus: "0.5"  # Límite de CPU (50% de un núcleo)
-    depends_on: 
-      db_nocodb: 
-        condition: service_healthy
+    # depends_on: 
+    #   db_nocodb: 
+    #     condition: service_healthy
 
 volumes:
   nocodb_data: {} 
-  db_data: {}
+  # db_data: {}
 
 networks:
   caddy_network:
