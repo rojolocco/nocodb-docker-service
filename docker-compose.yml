@@ -1,7 +1,7 @@
 services:
   postgres_nocodb:
     image: postgres:17-alpine
-    container_name: postgres_nocodb
+    container_name: db_nocodb
     env_file:
       - .env
     restart: always
@@ -17,7 +17,7 @@ services:
   
   nocodb:
     image: nocodb/nocodb:latest
-    container_name: nocodb
+    container_name: nc
     ports: 
       - "8081:8080"
     restart: always
@@ -33,7 +33,7 @@ services:
           memory: 512M  # Límite de memoria
           cpus: "0.5"  # Límite de CPU (50% de un núcleo)
     depends_on: 
-      postgres_nocodb: 
+      db_nocodb: 
         condition: service_healthy
 
 volumes:
