@@ -1,0 +1,20 @@
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    container_name: nocodb
+    ports: 
+      - "8081:8080"
+    restart: always
+    env_file:
+      - .env
+    volumes: 
+      - "nocodb_data:/usr/app/data"
+    networks:
+      - caddy_network
+
+volumes:
+  nocodb_data: {} 
+
+networks:
+  caddy_network:
+    external: true
