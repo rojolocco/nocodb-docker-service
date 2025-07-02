@@ -17,6 +17,7 @@ services:
 
 volumes:
   nocodb_data:
+    driver: local
 
 networks:
   traefik_network:
