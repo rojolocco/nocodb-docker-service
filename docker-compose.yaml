@@ -1,7 +1,7 @@
 services:
   nocodb:
-    image: nocodb/nocodb:latest
-    container_name: nc
+    image: nocodb/nocodb:0.301.2
+    container_name: nocodb
     restart: always
     env_file:
       - .env
